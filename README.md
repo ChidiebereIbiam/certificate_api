@@ -4,9 +4,8 @@
 API for generating, viewing and verifying certificate
 
 
-## Badges
+## License
 
-Add badges from somewhere like: [shields.io](https://shields.io/)
 
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://github.com/ChidiebereIbiam/certificate_api/blob/main/LICENSE)
 
