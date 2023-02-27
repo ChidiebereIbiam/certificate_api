@@ -12,9 +12,9 @@ class Certificate(models.Model):
     role = models.CharField(max_length=225)
     organization = models.CharField(default="Kartexa", max_length=255)
     internship_organizer = models.CharField(max_length=225)
-    start_date = models.DateField(auto_now=False, auto_now_add=False)
-    end_date = models.DateField(auto_now=False, auto_now_add=False)
-    issue_date = models.DateTimeField(auto_now=False, auto_now_add=False)
+    start_date = models.DateField(blank=True, null=True)
+    end_date = models.DateField(blank=True, null=True)
+    issue_date = models.DateField(blank=True, null=True)
     verification_link= models.URLField(max_length=200, blank=True, null=True)
     qr_image = models.ImageField(upload_to='qrcode', blank=True, null=True)
 
