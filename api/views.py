@@ -48,3 +48,31 @@ class Certificate_List(APIView):
             print(request.data['start_date'])
             print('error', serializer.errors)
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class VerifyCertificate(APIView):
+    """ Used for Verification of Certificate by passing the Certificate Number"""
+    def get_object(self, id):
+        try:
+            return Certificate.objects.get(certificate_number = id)
+        except Certificate.DoesNotExist:
+            raise JsonResponse ("Certificate Does Not Exist")
+        
+    def get(self, request, id):
+        certificate = self.get_object(id)
+        serializer = CertificateSerializer(certificate, many=False)
+        return Response(serializer.data)
+    
+
+@api_view(['GET', 'DELETE'])
+def certificate_detail(request, id):
+    """ Returns Certificate Details """
+    certificate = Certificate.objects.get(certificate_number = id)
+    
+    if request.method == "GET":
+        serializer = CertificateSerializer(certificate, many=False)
+        return Response(serializer.data)
+    
+    if request.method == "DELETE":
+        certificate.delete()
+        return Response ("Certificate was deleted")
